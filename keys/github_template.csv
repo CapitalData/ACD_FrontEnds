@@ -1,0 +1,7 @@
+# fill out and rename "github_config.csv"
+my_username,gkleemann
+my_password,XXXXXXXXXXX
+url, https://github.com/UC-Berkeley-I-School.com
+owner, 'UC-Berkeley-I-School'
+repo_nm, mids-w200-github-playground 
+githubtoken, 'XXXXXXXXXXXXXXX'
