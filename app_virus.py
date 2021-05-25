@@ -531,7 +531,6 @@ def update_figure(selected_method, selected_perspective): #, )
 # #  This is the datashader graph ######
 # #  rendering in iframe for now  ######
 # #### PAUSED #######
-
 # @app.callback(
 #     Output('example-graph2', 'figure'),
 #     Input('methodform', 'value'),
