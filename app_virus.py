@@ -24,6 +24,10 @@
 #https://datashader.org/user_guide/Networks.html
 #http://holoviews.org/user_guide/Network_Graphs.html
 
+#https://dash.plotly.com/dash-html-components/iframe
+#<iframe src="assets/ACD.png" style="width: 400px; height: 200px;"></iframe>
+        
+
 import dash
 import dash_core_components as dcc
 import dash_html_components as html
@@ -159,6 +163,7 @@ if workflow == 'pullfromgit':
     VirusProtein = pd.read_csv(StringIO(rv_2), error_bad_lines=False)
 
 elif workflow == 'pullfromlocal':
+
 #**********************************************
 # ***** Get the saved data. from local *****
 ## in this alternative workflow the data is pulled using Pull_data.ipynb from the graph then saved locally 
@@ -173,8 +178,11 @@ elif workflow == 'pullfromlocal':
         print(VirAttrib.head())
         print(vir_prot_vir_rt.head())
 
-# build the graph by nodes and edges
+### GRAPH DATA BUILD #### 
+###  build the graph by nodes and edges
 ### concatenate and the nodes list with labels.
+### FOR NOW GRAPH IS BUILT OFF THE APP AND PULLED IN AS AN HTML IN AN IFRAME
+
 df1 = pd.DataFrame(pd.Series(vir_prot_vir_rt['virus_name1']))
 df1.rename(columns={df1.columns[0]:'entity_name'}, inplace=True)
 
@@ -203,7 +211,6 @@ frames = [df1, df2, df3]
 
 nodes_all_labels=pd.concat(frames).drop_duplicates()
 nodes_all_labels.reset_index(inplace=True, drop=True)
-
 
 
 ########################################################
@@ -276,7 +283,7 @@ app.layout = html.Div([
                                     html.Div(
                                         className="card-body",
                                         children=[
-                                            html.H5("A graph-based approach to the world of viruses, className="card-title"),
+                                            html.H5("A graph-based map of the virus world", className="card-title"),
                                         ]
                                     )
                                 ]
@@ -396,20 +403,30 @@ app.layout = html.Div([
 #########
     
     html.Div([
-        dcc.Graph(
-            id='example-graph',
-            #hoverData={'points': [{'customdata': 'Japan'}]}
-        )
-    ], style={'width': '49%', 'display': 'inline-block', 'padding': '0 20'}),
-    
-#######
-
-    html.Div([
-        dcc.Graph(
-            id='example-graph2',
-            #hoverData={'points': [{'customdata': 'Japan'}]}
-        )
-    ], style={'width': '49%', 'display': 'inline-block', 'padding': '0 20'}),
+        html.Div([
+            dcc.Graph(
+                id='example-graph',
+                #hoverData={'points': [{'customdata': 'Japan'}]}
+            )
+        ], style={'width': '49%', 'display': 'inline-block', 'padding': '0 20'}),
+        
+    #######
+        html.Div([
+            html.Iframe(
+                src="assets/out3.html",
+                #style={"top": "right", "height": "50px"}
+            )
+            ### maybe render full graph later 
+            #dcc.Graph(
+            #    id='example-graph2',
+                #hoverData={'points': [{'customdata': 'Japan'}]}
+            #)
+        ], style={'width': '49%', 'display': 'inline-block', 'padding': '0 20'}),
+    ], style={
+        'borderBottom': 'thin lightgrey solid',
+        'backgroundColor': 'rgb(250, 250, 250)',
+        'padding': '10px 5px'
+    }),
 
     html.Div([
 
@@ -511,45 +528,48 @@ def update_figure(selected_method, selected_perspective): #, )
 
     return fig
 
-##############
-@app.callback(
-    Output('example-graph2', 'figure'),
-    Input('methodform', 'value'),
-    Input('styleform', 'value')
-    )
-def update_figure(selected_method, selected_perspective): #, )
-    df = VirAttrib
-    #########
-    # filter the dataframe and include potental All (no filter)
-    if selected_perspective  =='All' and selected_method  =='All':
-        filtered_df = df
-    elif selected_perspective == 'All':
-        filtered_df = df[(df.organism_name == selected_method)]
-    elif selected_method == 'All':
-        filtered_df = df[(df.country_name == selected_perspective)]
-    else:
-        filtered_df = df[(df.organism_name == selected_method) & (df.country_name == selected_perspective)]
-    #########
-    if verbose == True: 
-        print(filtered_df.head())
+# #  This is the datashader graph ######
+# #  rendering in iframe for now  ######
+# #### PAUSED #######
 
-    # #magic for notebook?
-    # #%opts Graph Nodes [bgcolor='black' width=800 height=800 xaxis=None yaxis=None]
-    # # %%opts Nodes (size=5)
-    graph = layout_nodes(hv.Graph(edges_all), layout=forceatlas2_layout)
-    forceatlas = bundle_graph(graph, split=False)
+# @app.callback(
+#     Output('example-graph2', 'figure'),
+#     Input('methodform', 'value'),
+#     Input('styleform', 'value')
+#     )
+# def update_figure(selected_method, selected_perspective): #, )
+#     df = VirAttrib
+#     #########
+#     # filter the dataframe and include potental All (no filter)
+#     if selected_perspective  =='All' and selected_method  =='All':
+#         filtered_df = df
+#     elif selected_perspective == 'All':
+#         filtered_df = df[(df.organism_name == selected_method)]
+#     elif selected_method == 'All':
+#         filtered_df = df[(df.country_name == selected_perspective)]
+#     else:
+#         filtered_df = df[(df.organism_name == selected_method) & (df.country_name == selected_perspective)]
+#     #########
+#     if verbose == True: 
+#         print(filtered_df.head())
 
-    pad = dict(x=(-.5, 1.3), y=(-.5, 1.3))
-    fig = datashade(forceatlas, width=800, height=800) * forceatlas.nodes.redim.range(**pad)
-    # fig = px.sunburst(
-    # filtered_df,
+#     # #magic for notebook?
+#     # #%opts Graph Nodes [bgcolor='black' width=800 height=800 xaxis=None yaxis=None]
+#     # # %%opts Nodes (size=5)
+#     graph = layout_nodes(hv.Graph(edges_all), layout=forceatlas2_layout)
+#     forceatlas = bundle_graph(graph, split=False)
+
+#     pad = dict(x=(-.5, 1.3), y=(-.5, 1.3))
+#     fig = datashade(forceatlas, width=800, height=800) * forceatlas.nodes.redim.range(**pad)
+#     # fig = px.sunburst(
+#     # filtered_df,
     
-    # path=["virus_name", 'genbank_id', 'identity_percentage', 'organism_name', "country_name"],
-    # color="organism_name",
-    # color_discrete_sequence=px.colors.qualitative.Pastel,
-    # maxdepth=-1,)
+#     # path=["virus_name", 'genbank_id', 'identity_percentage', 'organism_name', "country_name"],
+#     # color="organism_name",
+#     # color_discrete_sequence=px.colors.qualitative.Pastel,
+#     # maxdepth=-1,)
 
-    return fig
+#     return fig
 
 
 ###############
