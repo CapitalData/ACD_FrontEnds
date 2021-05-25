@@ -27,6 +27,7 @@
 #https://dash.plotly.com/dash-html-components/iframe
 #<iframe src="assets/ACD.png" style="width: 400px; height: 200px;"></iframe>
         
+#https://getbootstrap.com/docs/4.2/components/card/
 
 import dash
 import dash_core_components as dcc
@@ -411,7 +412,7 @@ app.layout = html.Div([
         ], style={'width': '49%', 'display': 'inline-block', 'padding': '0 20'}),
         
     #######
-        html.Div([
+        html.Div([ 
             html.Iframe(
                 src="assets/out3.html",
                 #style={"top": "right", "height": "50px"}
