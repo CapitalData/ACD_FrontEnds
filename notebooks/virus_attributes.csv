@@ -1,0 +1,20 @@
+virus-name,genbank-id,identity-percentage,organism-name,country-name
+SARS-CoV[NS-1],AY508724,79.69,Human,China
+MHV,AC 000192,50.23,Mouse,USA
+IBV,KY421672,48.38,Avian,China
+SARS-COV[GD01],AY278489,79.65,Human,China
+SARS,AY390556,79.7,Human,China
+SARS-CoV-2,AY390556,79.7,Human,China
+SARS-CoV[GZ02],AY390556,79.7,Human,China
+SARS-CoV[Sino1-11,AY485277,79.7,Human,China
+2019-nCoV[HKU-SZ-002a],MN938384,99.99,Human,China
+2019-nCoV[HKU-SZ-005b],MN975262,99.98,Human,China
+2019-nCoV,MN908947,100,Human,China
+HCoV-229E,MN306046,48.09,Human,USA
+HCoV-NL63,MG772808,49.43,Human,South Korea
+HCoV-HKU1,DQ415904,52.41,Human,China
+HCoV-OC43,KJ958219,51.08,Human,China
+MERS-CoV[ChinaGD01],KT006149,54.1,Human,China
+MERS,KM027262,54.02,Human,Kingdom of Saudi Arabia
+MERS-CoV,KM027262,54.02,Human,Kingdom of Saudi Arabia
+MERS-CoV[2014KSA_683],KM027262,54.02,Human,Kingdom of Saudi Arabia
