@@ -439,7 +439,7 @@ app.layout = html.Div([
                                         children=[                
                                             html.Iframe(
                                                 className="centered",
-                                                style={"height": "450px", "width": "100%"},
+                                                style={"height": "450px", "width": "100%", "border": "none"},
                                                 src="assets/out3.html",
                                             )
                                         ]
