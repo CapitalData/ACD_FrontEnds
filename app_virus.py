@@ -384,7 +384,7 @@ app.layout = html.Div([
                     html.Div(
                         className="col-lg",
                         children=[
-                        html.Div(
+                            html.Div(
                                 className="card mb-3",
                                 children=[
                                     html.Div(
@@ -403,14 +403,58 @@ app.layout = html.Div([
     ),
 #########
     
-    html.Div([
-        html.Div([
-            dcc.Graph(
-                id='example-graph',
+    html.Div(
+        className="container",
+        children=[
+            html.Div(
+                className="row",
+                children=[
+                    html.Div(
+                        className="col-sm",
+                        children=[
+                            html.Div(
+                                className="card mb-3",
+                                children=[
+                                    html.Div(
+                                        className="card-body",
+                                        children=[
+                                            dcc.Graph(
+                                                id='example-graph',
+                                                style={"height": "450px%", "width": "100%"},
                 #hoverData={'points': [{'customdata': 'Japan'}]}
+                                            )
+                                        ]
+                                    )
+                                ]
+                            )
+                        ]
+                    ),
+                    html.Div(
+                        className="col-sm",
+                        children=[
+                            html.Div(
+                                className="card mb-0",
+                                children=[
+                                    html.Div(
+                                        className="card-body",
+                                        children=[                
+                                            html.Iframe(
+                                                className="centered",
+                                                style={"height": "450px", "width": "100%"},
+                                                src="assets/out3.html",
+                                            )
+                                        ]
+                                    )
+                                ]
+                            )
+                        ]
+                    ),
+                ]
             )
-        ], style={'width': '49%', 'display': 'inline-block', 'padding': '0 20'}),
+        ]
+    ),
         
+<<<<<<< HEAD
     #######
         html.Div([ 
             html.Iframe(
@@ -428,6 +472,10 @@ app.layout = html.Div([
         'backgroundColor': 'rgb(250, 250, 250)',
         'padding': '10px 5px'
     }),
+=======
+                
+
+>>>>>>> 4a1471cb84d0d729a608dc78d915b282a4be1e55
 
     html.Div([
 
