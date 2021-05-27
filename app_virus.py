@@ -401,6 +401,7 @@ app.layout = html.Div([
             )
         ]
     ),
+
 #########
     
     html.Div(
@@ -454,28 +455,8 @@ app.layout = html.Div([
         ]
     ),
         
-<<<<<<< HEAD
-    #######
-        html.Div([ 
-            html.Iframe(
-                src="assets/out3.html",
-                #style={"top": "right", "height": "50px"}
-            )
-            ### maybe render full graph later 
-            #dcc.Graph(
-            #    id='example-graph2',
-                #hoverData={'points': [{'customdata': 'Japan'}]}
-            #)
-        ], style={'width': '49%', 'display': 'inline-block', 'padding': '0 20'}),
-    ], style={
-        'borderBottom': 'thin lightgrey solid',
-        'backgroundColor': 'rgb(250, 250, 250)',
-        'padding': '10px 5px'
-    }),
-=======
                 
 
->>>>>>> 4a1471cb84d0d729a608dc78d915b282a4be1e55
 
     html.Div([
 
