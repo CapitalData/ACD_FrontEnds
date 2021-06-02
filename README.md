@@ -38,10 +38,15 @@ conda install datashader
 
 conda install scikit-image=0.18.1 
 
+# to allow bokeh.io to work for SVG rendering 
+conda install selenium
+conda install -c conda-forge firefox geckodriver
+
 
 # for plotly dash
 conda install dash
 pip install dash_bootstrap_components
+
 
 
 # to discover latent processes and kill them
